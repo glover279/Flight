@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  * @author Robert
  */
 public class FlightManager {
-    private Ticket[] tickets=new Ticket[500];
+    private Ticket[] tickets=new Ticket[501];
     private int ticketCounter;
     
     public FlightManager(){
@@ -44,8 +44,8 @@ public class FlightManager {
 int count=500;
     try{
     Scanner sc=new Scanner(new File("tickets.txt"));
-    while(sc.hasNextLine())
-        line1=sc.nextLine();
+    while(sc.hasNextLine()) {
+        line1=sc.nextLine(); System.out.println(line1);
         line2=sc.nextLine();
         line3=sc.nextLine();
         Scanner sc1=new Scanner(line1).useDelimiter("#");
@@ -85,6 +85,7 @@ int count=500;
         
     }
     }
+    }
     catch(FileNotFoundException e) {e.printStackTrace();}
     }
     
@@ -93,11 +94,14 @@ int count=500;
     
     public String allTickets()
     {
+        String ret = "";
         for(int i=0; i<=499; i++)
         {
-          return tickets[i].toString()+"\n";
+          if(tickets[i] != null) {
+              ret += tickets[i].toString()+"\n";
+          }
         }
-        return null;
+        return ret;
      
     }
 
